@@ -6,13 +6,19 @@ import { GlobalStyle } from '../styles'
 import { Modal } from './Modal'
 
 const AppContainer = styled.div`
-  max-width: 75rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+`
+
+const Logo = styled.div`
+  border-bottom: 1px solid #c0c4cc;
 `
 
 const ImageWrapper = styled.div`
-  width: 17.625rem;
+  max-width: 17.5rem;
+  min-width: 17.5rem;
+  width: 25%;
   height: 22.75rem;
   position: relative;
   display: flex;
@@ -28,7 +34,7 @@ const ImageWrapper = styled.div`
 `
 
 const Image = styled.img`
-  width: 17.5rem;
+  width: 100%;
   height: 19.5rem;
   object-fit: cover;
   border-radius: 7px 7px 0px 0px;
@@ -86,7 +92,9 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <img src={logo} alt='Timescale' />
+      <Logo>
+        <img src={logo} alt='Timescale' />
+      </Logo>
       <AppContainer>
         {movies.map((movie, index) => (
           <ImageWrapper onClick={() => handleOpenModal(index)}>
