@@ -4,6 +4,7 @@ import { fetchMovies } from '../api/MovieAPI'
 import logo from '../images/logo.svg'
 import { GlobalStyle } from '../styles'
 import { Modal } from './Modal'
+import { MovieCard } from './MovieCard/MovieCard'
 
 const AppContainer = styled.div`
   display: flex;
@@ -13,56 +14,6 @@ const AppContainer = styled.div`
 
 const Logo = styled.div`
   border-bottom: 1px solid #c0c4cc;
-`
-
-const ImageWrapper = styled.div`
-  max-width: 17.5rem;
-  min-width: 17.5rem;
-  width: 25%;
-  height: 22.75rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 1.625rem;
-  background: #ffffff;
-  border: 1px solid #e1e3e6;
-  box-shadow: 1px 2px 8px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  cursor: pointer;
-`
-
-const Image = styled.img`
-  width: 100%;
-  height: 19.5rem;
-  object-fit: cover;
-  border-radius: 7px 7px 0px 0px;
-`
-
-const Title = styled.p`
-  padding: 1rem;
-`
-
-const VoteAverageWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  width: 34px;
-  height: 34px;
-  left: 14px;
-  top: 14px;
-
-  background: #ffffff;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  border-radius: 50%;
-`
-
-const VoteAverageText = styled.p`
-  font-size: 12px;
-  font-weight: bold;
 `
 
 export const IMAGE_URL_PREFIX = 'https://image.tmdb.org/t/p/original'
@@ -97,16 +48,11 @@ const App = () => {
       </Logo>
       <AppContainer>
         {movies.map((movie, index) => (
-          <ImageWrapper onClick={() => handleOpenModal(index)}>
-            <VoteAverageWrapper>
-              <VoteAverageText>{movie.vote_average}</VoteAverageText>
-            </VoteAverageWrapper>
-            <Image
-              src={IMAGE_URL_PREFIX + movie.poster_path}
-              alt={movie.original_title}
-            />
-            <Title>{movie.original_title}</Title>
-          </ImageWrapper>
+          <MovieCard
+            movie={movie}
+            index={index}
+            handleOpenModal={handleOpenModal}
+          />
         ))}
         <Modal
           movie={movies[movieIndex]}
