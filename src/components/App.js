@@ -4,7 +4,7 @@ import { fetchMovies } from '../api/MovieAPI'
 import logo from '../images/logo.svg'
 import { GlobalStyle } from '../styles'
 import { Modal } from './Modal'
-import { MovieCard } from './MovieCard/MovieCard'
+import { MovieCard } from './MovieCard'
 
 const AppContainer = styled.div`
   display: flex;
@@ -36,10 +36,6 @@ const App = () => {
     setMovieIndex(index)
   }
 
-  console.log(openModal)
-
-  console.log(movies)
-
   return (
     <>
       <GlobalStyle />
@@ -49,6 +45,7 @@ const App = () => {
       <AppContainer>
         {movies.map((movie, index) => (
           <MovieCard
+            key={movie.overview}
             movie={movie}
             index={index}
             handleOpenModal={handleOpenModal}
